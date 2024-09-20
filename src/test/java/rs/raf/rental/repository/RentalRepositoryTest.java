@@ -13,8 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static java.util.Date.UTC;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -34,7 +33,7 @@ public class RentalRepositoryTest {
 
         rentalRepository.save(rental);
         Optional<Rental> createdRental = rentalRepository.findById(rental.getId());
-        assertTrue(createdRental.isPresent());
+        assertFalse(createdRental.isPresent());
         assertEquals(rental, createdRental.get());
 
         rentalRepository.deleteById(rental.getId());
